@@ -50,6 +50,8 @@ function PasswordForm({ initialFormData = defaultInitialFormData, handleSave }
             hasNumber: /[0-9]/.test(input.value),
             hasAtLeast8Chars: /\w{8,}/.test(input.value)
             // matchesConfirmNewPw: formData.newPw === formData.confirmNewPw,
+            // FIXME: this won't chain at this exact moment like you hoped it
+            // would; formData won't be updated truthfully until *after* render
         });
 
         console.log('handleChange: ', formData.newPw, formData.confirmNewPw);
@@ -109,6 +111,8 @@ function PasswordForm({ initialFormData = defaultInitialFormData, handleSave }
                                         value={formData.newPw}
                                         required
                                         pattern={REGEX_PW.source}
+                                        // Setting regex pattern here for
+                                        // form validation in addition to state
                                     />
                                     {validators.hasAtLeast8Chars ? (
                                         <h6>✅ Password must be 8-72 characters long</h6>
