@@ -24,9 +24,15 @@ function PasswordForm({ initialFormData = defaultInitialFormData, handleSave }
     : IPasswordFormProps) {
 
     const [formData, setFormData] = useState(initialFormData);
-    const [errs, setErrs] = useState([]);
+    const [validators, setValidators] = useState({
+        hasLowercase: false,
+        hasUppercase: false,
+        hasNumber: false,
+        hasAtLeast8Chars: false,
+    });
 
     console.log('PasswordForm formData: ', formData);
+    console.log('PasswordForm validators: ', validators);
 
     /** Update form input */
     function handleChange(evt: React.ChangeEvent<HTMLInputElement>) {
@@ -35,6 +41,18 @@ function PasswordForm({ initialFormData = defaultInitialFormData, handleSave }
             ...fData,
             [input.name]: input.value,
         }));
+
+        // check individually if lowercase letter, uppercase letter, number in
+        // password. Also checks if there are at least 8 chars in password.
+        setValidators({
+            hasLowercase: /[a-z]/.test(input.value),
+            hasUppercase: /[A-Z]/.test(input.value),
+            hasNumber: /[0-9]/.test(input.value),
+            hasAtLeast8Chars: /\w{8,}/.test(input.value)
+            // matchesConfirmNewPw: formData.newPw === formData.confirmNewPw,
+        });
+
+        console.log('handleChange: ', formData.newPw, formData.confirmNewPw);
     }
 
 
@@ -50,8 +68,7 @@ function PasswordForm({ initialFormData = defaultInitialFormData, handleSave }
     // https://stackoverflow.com/questions/19605150/regex-for-password-must-contain-at-least-eight-characters-at-least-one-number-a
     const REGEX_PW = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
     console.log('This is REGEX_PW: ', REGEX_PW);
-
-    console.log(REGEX_PW.test(formData.newPw))
+    console.log(REGEX_PW.test(formData.newPw));
 
 
 
@@ -85,7 +102,7 @@ function PasswordForm({ initialFormData = defaultInitialFormData, handleSave }
                                     <input
                                         // type="password"
                                         type="text"
-                                        className="form-control"
+                                        className="form-control mb-2"
                                         id="newPw"
                                         name="newPw"
                                         onChange={handleChange}
@@ -93,6 +110,26 @@ function PasswordForm({ initialFormData = defaultInitialFormData, handleSave }
                                         required
                                         pattern={REGEX_PW.source}
                                     />
+                                    {validators.hasAtLeast8Chars ? (
+                                        <h6>✅ Password must be 8-72 characters long</h6>
+                                    ) : (
+                                        <h6>❌ Password must be 8-72 characters long</h6>
+                                    )}
+                                    {validators.hasNumber ? (
+                                        <h6>✅ Include a number</h6>
+                                    ) : (
+                                        <h6>❌ Include a number</h6>
+                                    )}
+                                    {validators.hasLowercase ? (
+                                        <h6>✅ Include a lowercase letter</h6>
+                                    ) : (
+                                        <h6>❌ Include a lowercase letter</h6>
+                                    )}
+                                    {validators.hasUppercase ? (
+                                        <h6>✅ Include an uppercase letter</h6>
+                                    ) : (
+                                        <h6>❌ Include an uppercase letter</h6>
+                                    )}
                                 </div>
                                 <div className="form-group">
                                     <label htmlFor="confirmNewPw">
@@ -101,13 +138,19 @@ function PasswordForm({ initialFormData = defaultInitialFormData, handleSave }
                                     <input
                                         // type="password"
                                         type="text"
-                                        className="form-control"
+                                        className="form-control mb-2"
                                         id="confirmNewPw"
                                         name="confirmNewPw"
                                         onChange={handleChange}
                                         value={formData.confirmNewPw}
                                         required
                                     />
+                                    {formData.newPw === formData.confirmNewPw
+                                        && formData.confirmNewPw.length > 0 ? (
+                                        <h6>✅ Password must match</h6>
+                                    ) : (
+                                        <h6>❌ Password must match</h6>
+                                    )}
                                 </div>
                                 <button
                                     type="submit"
