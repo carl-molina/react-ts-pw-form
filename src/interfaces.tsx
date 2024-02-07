@@ -1,13 +1,23 @@
-export interface IPasswordFormData {
+interface IPasswordFormData {
     newPw: string;
     confirmNewPw: string;
 }
 
-export interface IPasswordFormProps {
+interface IPasswordFormProps {
     initialFormData?: IPasswordFormData;
     handleSave: (formData: IPasswordFormData) => void;
 }
 
-export interface IUserData {
+interface IUserData {
     password: string;
 }
+
+interface IValidators {
+    hasLowercase: boolean,
+    hasUppercase: boolean,
+    hasNumber: boolean,
+    hasAtLeast8Chars: boolean,
+}
+
+
+export type { IPasswordFormData, IPasswordFormProps, IUserData, IValidators };
