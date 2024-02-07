@@ -48,8 +48,10 @@ function PasswordForm({ initialFormData = defaultInitialFormData, handleSave }
 
     // attribution for regex pattern for password:
     // https://stackoverflow.com/questions/19605150/regex-for-password-must-contain-at-least-eight-characters-at-least-one-number-a
-    const REGEX_PW = "^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$";
+    const REGEX_PW = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
     console.log('This is REGEX_PW: ', REGEX_PW);
+
+    console.log(REGEX_PW.test(formData.newPw))
 
 
 
@@ -81,14 +83,15 @@ function PasswordForm({ initialFormData = defaultInitialFormData, handleSave }
                                         Enter new password *
                                     </label>
                                     <input
-                                        type="password"
+                                        // type="password"
+                                        type="text"
                                         className="form-control"
                                         id="newPw"
                                         name="newPw"
                                         onChange={handleChange}
                                         value={formData.newPw}
                                         required
-                                        pattern={REGEX_PW}
+                                        pattern={REGEX_PW.source}
                                     />
                                 </div>
                                 <div className="form-group">
@@ -96,7 +99,8 @@ function PasswordForm({ initialFormData = defaultInitialFormData, handleSave }
                                         Confirm password *
                                     </label>
                                     <input
-                                        type="password"
+                                        // type="password"
+                                        type="text"
                                         className="form-control"
                                         id="confirmNewPw"
                                         name="confirmNewPw"
