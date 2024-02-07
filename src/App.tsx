@@ -19,6 +19,8 @@ const DEFAULT_USER_DATA: IUserData = {
 function App() {
   const [userData, setUserData] = useState(DEFAULT_USER_DATA);
 
+  console.log('This is App w/ userData: ', userData);
+
 
   function handleSave(formData: IPasswordFormData) {
     const { newPw } = formData;
