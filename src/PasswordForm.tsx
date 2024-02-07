@@ -1,16 +1,21 @@
 import React from "react";
 import { useState } from "react";
-import { IPasswordFormData, IPasswordFormProps } from "./interfaces";
+import {
+    IPasswordFormData,
+    IPasswordFormProps,
+    IValidators }
+from "./interfaces";
 
 
 /** PasswordForm: checks whether a password is valid password.
  *
  *  Props:
- *  - none
+ *  - initialFormData
+ *  - handleSave
  *
  *  State:
  *  - formData
- *  - errs
+ *  - validators
  *
  *  App -> PasswordForm
  */
@@ -23,8 +28,8 @@ const defaultInitialFormData: IPasswordFormData = {
 function PasswordForm({ initialFormData = defaultInitialFormData, handleSave }
     : IPasswordFormProps) {
 
-    const [formData, setFormData] = useState(initialFormData);
-    const [validators, setValidators] = useState({
+    const [formData, setFormData] = useState<IPasswordFormData>(initialFormData);
+    const [validators, setValidators] = useState<IValidators>({
         hasLowercase: false,
         hasUppercase: false,
         hasNumber: false,
