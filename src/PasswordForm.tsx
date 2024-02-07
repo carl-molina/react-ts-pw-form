@@ -48,6 +48,39 @@ function PasswordForm({ initialFormData = defaultInitialFormData, handleSave }
 
     return (
         <form>
+            <div className="PasswordForm-header">
+                <h1>Welcome back CARL!</h1>
+                <p>Your username is CARLMOLINA42</p>
+                <br/>
+                <p>Create a new password.</p>
+                <p>Make sure it does not match your prior passwords.</p>
+            </div>
+            <div className="PasswordForm-newPw">
+                <label htmlFor="PasswordForm-newPw">New Password: </label>
+                <input
+                    type="password"
+                    id="PasswordForm-newPw"
+                    name="newPw"
+                    placeholder="new password"
+                    onChange={handleChange}
+                    value={formData.newPw}
+                    required
+                />
+            </div>
+            <div className="PasswordForm-confirmNewPw">
+                <label htmlFor="PasswordForm-confirmNewPw">Confirm New Password: </label>
+                <input
+                    type="password"
+                    id="PasswordForm-confirmNewPw"
+                    name="confirmNewPw"
+                    placeholder="new password"
+                    onChange={handleChange}
+                    value={formData.confirmNewPw}
+                    required
+                />
+            </div>
+
+            <button className="PasswordForm-btn">SUBMIT NEW CHANGES</button>
 
         </form>
     )
