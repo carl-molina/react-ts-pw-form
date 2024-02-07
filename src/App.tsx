@@ -1,33 +1,36 @@
 import React, { useState } from "react";
 import "./App.css";
 import PasswordForm from "./PasswordForm";
+import { IPasswordFormData, IUserData } from "./interfaces";
 
+
+const DEFAULT_USER_DATA: IUserData = {
+  password: ""
+}
 
 /** Component for entire page.
  *
- * Props: none
- * State: none
+ *  Props: none
+ *  State: none
  *
+ *  App -> PasswordForm
  */
 
 function App() {
-  const [count, setCount] = useState(0);
+  const [userData, setUserData] = useState(DEFAULT_USER_DATA);
 
-  function incrCount() {
-    setCount(count => count + 1);
+
+  function handleSave(formData: IPasswordFormData) {
+    const { newPw } = formData;
+    setUserData({
+      password: newPw
+    })
   }
-
-
-
-  // function handleSave(formData: ITodoFormData) {
-  //   update({ ...formData, id: todo.id});
-  //   setIsEditing(false);
-  // }
 
   return (
     <div className="App">
       <main>
-        <PasswordForm />
+        <PasswordForm handleSave={handleSave}/>
       </main>
     </div>
   );
