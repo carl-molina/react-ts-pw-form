@@ -56,9 +56,6 @@ function PasswordForm({ initialFormData = defaultInitialFormData, handleSave }
                 hasUppercase: /[A-Z]/.test(input.value),
                 hasNumber: /[0-9]/.test(input.value),
                 hasAtLeast8Chars: /^\w{8,72}$/.test(input.value)
-                // matchesConfirmNewPw: formData.newPw === formData.confirmNewPw,
-                // FIXME: this won't chain at this exact moment like you hoped it
-                // would; formData won't be updated truthfully until *after* render
             });
         }
     }
@@ -115,9 +112,13 @@ function PasswordForm({ initialFormData = defaultInitialFormData, handleSave }
                                     // form validation in addition to state
                                     />
                                     {validators.hasAtLeast8Chars ? (
-                                        <h6>✅ Password must be 8-72 characters long</h6>
+                                        <h6>
+                                        ✅ Password must be 8-72 characters long
+                                        </h6>
                                     ) : (
-                                        <h6>❌ Password must be 8-72 characters long</h6>
+                                        <h6>
+                                        ❌ Password must be 8-72 characters long
+                                        </h6>
                                     )}
                                     {validators.hasNumber ? (
                                         <h6>✅ Include a number</h6>
