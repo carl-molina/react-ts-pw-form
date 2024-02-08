@@ -29,7 +29,10 @@ const defaultInitialFormData: IPasswordFormData = {
 function PasswordForm({ initialFormData = defaultInitialFormData, handleSave }
     : IPasswordFormProps) {
 
-    const [formData, setFormData] = useState<IPasswordFormData>(initialFormData);
+    const [formData, setFormData] = useState<IPasswordFormData>(
+        initialFormData
+    );
+
     const [validators, setValidators] = useState<IValidators>({
         hasLowercase: false,
         hasUppercase: false,
