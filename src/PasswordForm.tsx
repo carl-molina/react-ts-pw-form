@@ -3,8 +3,9 @@ import { useState } from "react";
 import {
     IPasswordFormData,
     IPasswordFormProps,
-    IValidators }
-from "./interfaces";
+    IValidators
+}
+    from "./interfaces";
 
 
 /** PasswordForm: checks whether a password is valid password.
@@ -49,19 +50,18 @@ function PasswordForm({ initialFormData = defaultInitialFormData, handleSave }
 
         // check individually if lowercase letter, uppercase letter, number in
         // password. Also checks if there are at least 8 chars in password.
-        setValidators({
-            hasLowercase: /[a-z]/.test(input.value),
-            hasUppercase: /[A-Z]/.test(input.value),
-            hasNumber: /[0-9]/.test(input.value),
-            hasAtLeast8Chars: /\w{8,}/.test(input.value)
-            // matchesConfirmNewPw: formData.newPw === formData.confirmNewPw,
-            // FIXME: this won't chain at this exact moment like you hoped it
-            // would; formData won't be updated truthfully until *after* render
-        });
-
-        console.log('handleChange: ', formData.newPw, formData.confirmNewPw);
+        if (input.name === "newPw") {
+            setValidators({
+                hasLowercase: /[a-z]/.test(input.value),
+                hasUppercase: /[A-Z]/.test(input.value),
+                hasNumber: /[0-9]/.test(input.value),
+                hasAtLeast8Chars: /^\w{8,72}$/.test(input.value)
+                // matchesConfirmNewPw: formData.newPw === formData.confirmNewPw,
+                // FIXME: this won't chain at this exact moment like you hoped it
+                // would; formData won't be updated truthfully until *after* render
+            });
+        }
     }
-
 
     /** Call parent function and clear form */
     function handleSubmit(evt: React.FormEvent<HTMLFormElement>) {
@@ -70,16 +70,11 @@ function PasswordForm({ initialFormData = defaultInitialFormData, handleSave }
         setFormData(initialFormData);
     }
 
-
     // attribution for regex pattern for password:
     // https://stackoverflow.com/questions/19605150/regex-for-password-must-contain-at-least-eight-characters-at-least-one-number-a
     const REGEX_PW = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
     console.log('This is REGEX_PW: ', REGEX_PW);
     console.log(REGEX_PW.test(formData.newPw));
-
-
-
-
 
     return (
         <div className="container">
@@ -116,8 +111,8 @@ function PasswordForm({ initialFormData = defaultInitialFormData, handleSave }
                                         value={formData.newPw}
                                         required
                                         pattern={REGEX_PW.source}
-                                        // Setting regex pattern here for
-                                        // form validation in addition to state
+                                    // Setting regex pattern here for
+                                    // form validation in addition to state
                                     />
                                     {validators.hasAtLeast8Chars ? (
                                         <h6>✅ Password must be 8-72 characters long</h6>
