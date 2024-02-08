@@ -4,8 +4,8 @@ import {
     IPasswordFormData,
     IPasswordFormProps,
     IValidators
-}
-    from "./interfaces";
+} from "./interfaces";
+
 
 const initialFormData: IPasswordFormData = {
     newPw: "",
@@ -18,6 +18,7 @@ const initialFormValidators: IValidators = {
     hasNumber: false,
     hasAtLeast8Chars: false
 };
+
 
 /** PasswordForm: checks whether a password is valid password.
  *
@@ -118,11 +119,13 @@ function PasswordForm({ handleSave }
                                     />
                                     {validators.hasAtLeast8Chars ? (
                                         <h6>
-                                            ✅ Password must be 8-72 characters long
+                                            ✅ Password must be 8-72 characters
+                                            long
                                         </h6>
                                     ) : (
                                         <h6>
-                                            ❌ Password must be 8-72 characters long
+                                            ❌ Password must be 8-72 characters
+                                            long
                                         </h6>
                                     )}
                                     {validators.hasNumber ? (
