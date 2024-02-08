@@ -55,7 +55,7 @@ function PasswordForm({ handleSave }
             [input.name]: input.value,
         }));
 
-        // check individually if lowercase letter, uppercase letter, number in
+        // Check individually if lowercase letter, uppercase letter, number in
         // password. Also checks if there are at least 8 chars in password.
         if (input.name === "newPw") {
             setValidators({
@@ -64,6 +64,7 @@ function PasswordForm({ handleSave }
                 hasNumber: /[0-9]/.test(input.value),
                 hasAtLeast8Chars: /^\w{8,72}$/.test(input.value)
             });
+            // TODO: should probably stop testing once true; jk we need this
         }
     }
 
@@ -167,7 +168,17 @@ function PasswordForm({ handleSave }
                                 </div>
                                 <button
                                     type="submit"
-                                    className="btn btn-primary btn-block mt-5">
+                                    className="btn btn-primary btn-block mt-5"
+                                    disabled={
+                                        !(validators.hasLowercase &&
+                                            validators.hasUppercase &&
+                                            validators.hasNumber &&
+                                            validators.hasAtLeast8Chars &&
+                                            (formData.newPw ===
+                                                formData.confirmNewPw) &&
+                                            formData.confirmNewPw.length > 0
+                                        )
+                                    }>
                                     Reset Password
                                 </button>
                             </form>
@@ -180,3 +191,12 @@ function PasswordForm({ handleSave }
 }
 
 export default PasswordForm;
+
+
+/** Text editor example */
+
+// baby tab
+
+    // Text Editor Cursor Here
+
+// double arrow down here resets cursor back to beginning
