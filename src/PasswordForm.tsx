@@ -21,24 +21,28 @@ import {
  *  App -> PasswordForm
  */
 
-const defaultInitialFormData: IPasswordFormData = {
+const initialFormData: IPasswordFormData = {
     newPw: "",
     confirmNewPw: ""
 };
 
-function PasswordForm({ initialFormData = defaultInitialFormData, handleSave }
+const initialFormValidators: IValidators = {
+    hasLowercase: false,
+    hasUppercase: false,
+    hasNumber: false,
+    hasAtLeast8Chars: false
+}
+
+function PasswordForm({ handleSave }
     : IPasswordFormProps) {
 
     const [formData, setFormData] = useState<IPasswordFormData>(
         initialFormData
     );
 
-    const [validators, setValidators] = useState<IValidators>({
-        hasLowercase: false,
-        hasUppercase: false,
-        hasNumber: false,
-        hasAtLeast8Chars: false,
-    });
+    const [validators, setValidators] = useState<IValidators>(
+        initialFormValidators
+    );
 
     console.log('PasswordForm formData: ', formData);
     console.log('PasswordForm validators: ', validators);
@@ -68,6 +72,7 @@ function PasswordForm({ initialFormData = defaultInitialFormData, handleSave }
         evt.preventDefault();
         handleSave(formData);
         setFormData(initialFormData);
+        setValidators(initialFormValidators)
     }
 
     // attribution for regex pattern for password:
