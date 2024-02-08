@@ -7,6 +7,17 @@ import {
 }
     from "./interfaces";
 
+const initialFormData: IPasswordFormData = {
+    newPw: "",
+    confirmNewPw: ""
+};
+
+const initialFormValidators: IValidators = {
+    hasLowercase: false,
+    hasUppercase: false,
+    hasNumber: false,
+    hasAtLeast8Chars: false
+};
 
 /** PasswordForm: checks whether a password is valid password.
  *
@@ -20,18 +31,6 @@ import {
  *
  *  App -> PasswordForm
  */
-
-const initialFormData: IPasswordFormData = {
-    newPw: "",
-    confirmNewPw: ""
-};
-
-const initialFormValidators: IValidators = {
-    hasLowercase: false,
-    hasUppercase: false,
-    hasNumber: false,
-    hasAtLeast8Chars: false
-}
 
 function PasswordForm({ handleSave }
     : IPasswordFormProps) {
@@ -72,7 +71,7 @@ function PasswordForm({ handleSave }
         evt.preventDefault();
         handleSave(formData);
         setFormData(initialFormData);
-        setValidators(initialFormValidators)
+        setValidators(initialFormValidators);
     }
 
     // attribution for regex pattern for password:
@@ -119,11 +118,11 @@ function PasswordForm({ handleSave }
                                     />
                                     {validators.hasAtLeast8Chars ? (
                                         <h6>
-                                        ✅ Password must be 8-72 characters long
+                                            ✅ Password must be 8-72 characters long
                                         </h6>
                                     ) : (
                                         <h6>
-                                        ❌ Password must be 8-72 characters long
+                                            ❌ Password must be 8-72 characters long
                                         </h6>
                                     )}
                                     {validators.hasNumber ? (
