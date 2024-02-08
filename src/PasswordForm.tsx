@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ReactElement } from "react";
 import { useState } from "react";
 import {
     IPasswordFormData,
@@ -34,7 +34,7 @@ const initialFormValidators: IValidators = {
  */
 
 function PasswordForm({ handleSave }
-    : IPasswordFormProps) {
+    : IPasswordFormProps): JSX.Element {
 
     const [formData, setFormData] = useState<IPasswordFormData>(
         initialFormData
@@ -48,7 +48,7 @@ function PasswordForm({ handleSave }
     console.log('PasswordForm validators: ', validators);
 
     /** Update form input */
-    function handleChange(evt: React.ChangeEvent<HTMLInputElement>) {
+    function handleChange(evt: React.ChangeEvent<HTMLInputElement>): void {
         const input = evt.target;
         setFormData((fData: any) => ({
             ...fData,
@@ -69,7 +69,7 @@ function PasswordForm({ handleSave }
     }
 
     /** Call parent function and clear form */
-    function handleSubmit(evt: React.FormEvent<HTMLFormElement>) {
+    function handleSubmit(evt: React.FormEvent<HTMLFormElement>): void {
         evt.preventDefault();
         handleSave(formData);
         setFormData(initialFormData);
