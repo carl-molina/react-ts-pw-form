@@ -73,8 +73,6 @@ function PasswordForm({ initialFormData = defaultInitialFormData, handleSave }
     // attribution for regex pattern for password:
     // https://stackoverflow.com/questions/19605150/regex-for-password-must-contain-at-least-eight-characters-at-least-one-number-a
     const regex_pw = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
-    console.log('This is regex_pw: ', regex_pw);
-    console.log(regex_pw.test(formData.newPw));
 
     return (
         <div className="container">
