@@ -5,7 +5,6 @@ import { render } from '@testing-library/react';
 import App from './App.js';
 
 
-
 describe("App smoke test", function () {
   test('renders without crashing', function () {
     render(<App />);
@@ -27,7 +26,6 @@ describe("App renders correct data", function () {
     expect(btn.getAttribute('disabled')).toBeDefined();
   });
 });
-
 
 
 describe("App snapshot test", function () {
