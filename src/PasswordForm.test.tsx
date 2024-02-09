@@ -6,8 +6,6 @@ import App from './App.js';
 import PasswordForm from "./PasswordForm.js";
 
 
-const handleSave = MockedFunction
-
 
 // smoke test
 test('renders without crashing', function () {
