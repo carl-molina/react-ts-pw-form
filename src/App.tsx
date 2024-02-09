@@ -16,7 +16,7 @@ const DEFAULT_USER_DATA: IUserData = {
  *  App -> PasswordForm
  */
 
-function App() {
+function App(): JSX.Element {
   const [userData, setUserData] = useState<IUserData>(DEFAULT_USER_DATA);
 
   console.log('This is App w/ userData: ', userData);
