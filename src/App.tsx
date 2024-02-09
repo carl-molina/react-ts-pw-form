@@ -17,11 +17,11 @@ const DEFAULT_USER_DATA: IUserData = {
  */
 
 function App() {
-  const [userData, setUserData] = useState(DEFAULT_USER_DATA);
+  const [userData, setUserData] = useState<IUserData>(DEFAULT_USER_DATA);
 
   console.log('This is App w/ userData: ', userData);
 
-  function handleSave(formData: IPasswordFormData) {
+  function handleSave(formData: IPasswordFormData): void {
     const { newPw } = formData;
     setUserData({
       password: newPw
