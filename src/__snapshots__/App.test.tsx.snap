@@ -1,0 +1,111 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`matches snapshot 1`] = `
+<div>
+  <div
+    class="App"
+  >
+    <main>
+      <div
+        class="container"
+      >
+        <div
+          class="row justify-content-center"
+        >
+          <div
+            class="col-md-12"
+          >
+            <div
+              class="card mt-5"
+            >
+              <div
+                class="card-body"
+              >
+                <h1
+                  class="card-title text-center"
+                >
+                  Welcome back CARL!
+                </h1>
+                <h6>
+                  Your username is CARLMOLINA42
+                </h6>
+                <form
+                  class="PasswordForm-form"
+                >
+                  <div
+                    class="form-group mt-5 mb-5"
+                  >
+                    <h6>
+                      Create a new password.
+                    </h6>
+                    <h6>
+                      Make sure it does not match your prior passwords.
+                    </h6>
+                  </div>
+                  <div
+                    class="form-group mb-5"
+                  >
+                    <label
+                      for="newPw"
+                    >
+                      Enter new password *
+                    </label>
+                    <input
+                      class="form-control mb-2"
+                      id="newPw"
+                      name="newPw"
+                      pattern="^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,}$"
+                      required=""
+                      type="text"
+                      value=""
+                    />
+                    <h6>
+                      ❌ Password must be 8-72 characters long
+                    </h6>
+                    <h6>
+                      ❌ Include a number
+                    </h6>
+                    <h6>
+                      ❌ Include a lowercase letter
+                    </h6>
+                    <h6>
+                      ❌ Include an uppercase letter
+                    </h6>
+                  </div>
+                  <div
+                    class="form-group"
+                  >
+                    <label
+                      for="confirmNewPw"
+                    >
+                      Confirm password *
+                    </label>
+                    <input
+                      class="form-control mb-2"
+                      id="confirmNewPw"
+                      name="confirmNewPw"
+                      required=""
+                      type="text"
+                      value=""
+                    />
+                    <h6>
+                      ❌ Password must match
+                    </h6>
+                  </div>
+                  <button
+                    class="btn btn-primary btn-block mt-5"
+                    disabled=""
+                    type="submit"
+                  >
+                    Reset Password
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
+`;
