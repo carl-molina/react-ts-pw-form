@@ -23,7 +23,6 @@ const initialFormValidators: IValidators = {
 /** PasswordForm: checks whether a password is valid password.
  *
  *  Props:
- *  - initialFormData
  *  - handleSave
  *
  *  State:
@@ -78,7 +77,7 @@ function PasswordForm({ handleSave }
 
     // attribution for regex pattern for password:
     // https://stackoverflow.com/questions/19605150/regex-for-password-must-contain-at-least-eight-characters-at-least-one-number-a
-    const regex_pw = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
+    const regex_pw = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,72}$/;
 
     return (
         <div className="container">
