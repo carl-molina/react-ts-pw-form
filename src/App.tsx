@@ -25,7 +25,7 @@ function App(): JSX.Element {
     const { newPw } = formData;
     setUserData({
       password: newPw
-    })
+    });
   }
 
   return (
